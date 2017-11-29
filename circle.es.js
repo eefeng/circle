@@ -25,6 +25,7 @@ var Circle = function () {
         this.skews = [];
         this.rotate1 = [];
         this.rotate2 = [];
+        this.inner = 90;
 
         this.init();
     }
@@ -32,8 +33,11 @@ var Circle = function () {
     _createClass(Circle, [{
         key: "clearInner",
         value: function clearInner() {
+
+            var inner = this.inner;
+
             this.$ele.find("ul li a").each(function (index, element) {
-                $(element).css("background", "radial-gradient(transparent " + this.inner / Math.sqrt(2) + "%," + $(element).css("background-color") + " " + this.inner / Math.sqrt(2) + "%)");
+                $(element).css("background", "radial-gradient(transparent " + inner / Math.sqrt(2) + "%," + $(element).css("background-color") + " " + inner / Math.sqrt(2) + "%)");
             });
         }
     }, {
