@@ -7,6 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Circle</title>
     <link rel="stylesheet" href="./index.css">
+    <style>
+        .buttons {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 
@@ -20,36 +26,52 @@
     </div>
 </div>
 
-<button class="btn" id="add">add</button>
-<button class="btn" id="delete">delete</button>
-<button class="btn" id="save">save</button>
+<div class="buttons">
+    <button class="btn" id="save">save</button>
+    <button class="btn" id="update1">update</button>
+
+    <input type="number" id="divideNumber"/>
+    <button class="btn" id="divide">divide</button>
+</div>
 <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="./circle.es.js"></script>
 <script>
 
-
     let circle = new Circle($("#circle"),{
+        inner: 80,
         pies: [
             {
+                percentage: 10,
+                color: '#03654f'
+            }
+            ,{
                 percentage: 20,
-                color: '#f36f6f'
-            },{
-                percentage: 20,
-                color: '#20d2af'
-            },{
-                percentage: 20,
-                color: '#a2c449'
-            },{
-                percentage: 20,
-                color: '#75a6d1'
-            },{
-                percentage: 20,
-                color: '#05a6d1'
+                color: '#08d2af'
+            }
+            ,{
+                percentage: 30,
+                color: '#92c449'
+            }
+            ,{
+                percentage: 40,
+                color: '#19a8d1'
             }
         ]
     });
 
-    circle.addPie();
+
+    $('#save').click(function () {
+        circle.saveInfo();
+    });
+
+    $('#update1').click(function () {
+        circle.updatePercentage(1, 20);
+    });
+
+    $('#divide').click(function () {
+        circle.divideInto($('#divideNumber').val());
+    });
+
 
 
 </script>
