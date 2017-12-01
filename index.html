@@ -21,18 +21,29 @@
             top: 15px;
             left: 15px;
             position: absolute;
-            z-index: 9999;
+            z-index: 2;
+        }
+
+        .arrows .arrow {
+            position: absolute;
+            transform:  rotate(125deg);
+            transform-origin: 15px 130px;
+            margin: -30px  4em 0 4em;
+            z-index: 999999;
         }
     </style>
 
 </head>
 <body>
 
-
-
 <div class="circle-container">
     <div class="circle circular" id="circle">
-        <div class="center"></div>
+        <div class="center">
+
+        </div>
+        <div class="arrows">
+            <img src="./arrow-down.svg" alt="" class="arrow" width="30">
+        </div>
         <ul>
         </ul>
     </div>

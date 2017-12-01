@@ -1,5 +1,5 @@
 .circular {
-    overflow:hidden;
+    /*overflow:hidden;*/
     pointer-events:auto;
 }
 .circular ul{
@@ -25,16 +25,13 @@
     text-align: center;
 }
 
-.circular li>a>span {
-    position: absolute;
+.circular li>i {
+    display: block;
     width: 1em;
     height: 1em;
-    display: block;
-    background: turquoise;
-    left: 5em;
-    top: 0;
-    transform: rotate(20deg);
-    transform-origin: 0 5em;
+    position: absolute;
+    background: greenyellow;
+    z-index: 99999;
 }
 .circular div.after {
     position:absolute;

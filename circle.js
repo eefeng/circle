@@ -111,10 +111,23 @@ class Circle {
                 "background": pie.color
             });
             let $li = $('<li></li>').css("transform", `rotate(${this.rotate2[i]}deg) skew(${this.skews[i]}deg)`).append($a);
+
             this.$ele.find('ul').append($li);
+
+            // $('<i>123</i>').css({
+            //     top: $li.height() + 'px',
+            //     left: $li.width() + 'px',
+            //     "z-index": 9999999,
+            //     background: '#000'
+            // }).appendTo($li);
         });
 
-        this.clearInner()
+        // this.clearInner()
+    }
+
+
+    addArrows() {
+
     }
 
     divideInto(num) {

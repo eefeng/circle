@@ -117,11 +117,22 @@ var Circle = function () {
                     "background": pie.color
                 });
                 var $li = $('<li></li>').css("transform", 'rotate(' + _this.rotate2[i] + 'deg) skew(' + _this.skews[i] + 'deg)').append($a);
+
                 _this.$ele.find('ul').append($li);
+
+                // $('<i>123</i>').css({
+                //     top: $li.height() + 'px',
+                //     left: $li.width() + 'px',
+                //     "z-index": 9999999,
+                //     background: '#000'
+                // }).appendTo($li);
             });
 
-            this.clearInner();
+            // this.clearInner()
         }
+    }, {
+        key: 'addArrows',
+        value: function addArrows() {}
     }, {
         key: 'divideInto',
         value: function divideInto(num) {
