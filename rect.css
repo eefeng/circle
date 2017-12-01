@@ -1,0 +1,24 @@
+.rect-outer {
+  width: 10em;
+  height: 8em;
+  border-radius: 1.5em;
+  border: 1em solid red;
+  border-top-color: turquoise;
+  border-bottom-color: aquamarine;
+  border-left-color: cadetblue; }
+  .rect-outer .inner {
+    width: 11em;
+    height: 9em;
+    border-radius: 1em;
+    position: relative;
+    top: -.5em;
+    left: -.5em; }
+
+.test {
+  width: 100px;
+  height: 100px;
+  background: #ddd;
+  border-width: 10px;
+  border-image: -webkit-linear-gradient(red, blue, yellow, black, white, green) 1 1; }
+
+/*# sourceMappingURL=rect.css.map */

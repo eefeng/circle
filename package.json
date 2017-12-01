@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "babel circle.js -o circle.es.js --watch",
+    "dev": "babel circle.js -o circle.es.js --watch & sass rect.scss:rect.css --watch",
     "build": "uglifyjs circle.es.js -m -o circle.min.js"
   },
   "keywords": [],

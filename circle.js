@@ -6,7 +6,7 @@ class Circle {
 
 
         this.DEFAULTS = {
-            inner: 90
+            inner: 80
         };
 
         this.opts = $.extend({}, this.DEFAULTS, options);
