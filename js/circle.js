@@ -6,7 +6,7 @@ class Circle {
 
 
         this.DEFAULTS = {
-            inner: 80
+
         };
 
         this.opts = $.extend({}, this.DEFAULTS, options);
@@ -15,7 +15,7 @@ class Circle {
         this.skews = [];
         this.rotate1 = [];
         this.rotate2 = [];
-        this.inner = this.opts.inner;
+
 
         this.colors = ['#f36f6f', '#20d2af', '#a2c449', '#75a6d1','#036f6f', '#80d2af', '#92c449', '#15a6d1', '#03654f', '#08d2af', '#92c449', '#19a8d1'];
 
@@ -26,7 +26,7 @@ class Circle {
     init() {
 
 
-        // TODO sim
+        // TODO sim  重要的事说三遍
 
         this.initPiesInfo(this.opts.pies);
         this.initPiesInfo(this.opts.pies);
@@ -36,15 +36,6 @@ class Circle {
 
     }
 
-    clearInner() {
-
-        let inner = this.inner;
-
-        this.$ele.find("ul li a").each(function(index,element){
-            $(element).css("background", "radial-gradient(transparent " + inner / Math.sqrt(2) + "%," + $(element).css("background-color") + " " + inner / Math.sqrt(2) + "%)");
-        });
-
-    }
 
 
     initPiesInfo(piesInfo) {
@@ -88,7 +79,6 @@ class Circle {
 
     drawPies(pies) {
 
-        this.inner = this.opts.inner;
 
         pies.map((pie, i) => {
             this.degs.push(pie.percentage * 360 / 100);
@@ -114,15 +104,8 @@ class Circle {
 
             this.$ele.find('ul').append($li);
 
-            // $('<i>123</i>').css({
-            //     top: $li.height() + 'px',
-            //     left: $li.width() + 'px',
-            //     "z-index": 9999999,
-            //     background: '#000'
-            // }).appendTo($li);
         });
 
-        // this.clearInner()
     }
 
 
@@ -150,7 +133,6 @@ class Circle {
         this.initPiesInfo(piesInfo);
 
         this.drawPies(piesInfo);
-
 
         this.piesInfo = piesInfo;
     }

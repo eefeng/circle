@@ -6,44 +6,21 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Circle</title>
-    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="css/circle.css">
     <style>
         .buttons {
             margin-top: 20px;
             text-align: center;
         }
-
-        .center {
-            width: 170px;
-            height: 170px;
-            background: #fff;
-            border-radius: 50%;
-            top: 15px;
-            left: 15px;
-            position: absolute;
-            z-index: 2;
-        }
-
-        .arrows .arrow {
-            position: absolute;
-            transform:  rotate(125deg);
-            transform-origin: 15px 130px;
-            margin: -30px  4em 0 4em;
-            z-index: 999999;
-        }
-
     </style>
 
-    <link rel="stylesheet" href="./rect.css">
 
 </head>
 <body>
 
 <div class="circle-container">
     <div class="circle circular" id="circle">
-        <div class="center">
-
-        </div>
+        <div class="center"></div>
         <div class="arrows">
             <img src="./arrow-down.svg" alt="" class="arrow" width="30">
         </div>
@@ -52,11 +29,6 @@
     </div>
 </div>
 
-<div class="rect-outer">
-    <div class="inner"></div>
-</div>
-
-<div class="test"></div>
 
 <div class="buttons">
     <button class="btn" id="save">save</button>
@@ -66,7 +38,7 @@
     <button class="btn" id="divide">divide</button>
 </div>
 <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="./circle.es.js"></script>
+<script src="js/circle.es.js"></script>
 <script>
 
     let circle = new Circle($("#circle"),{

@@ -10,9 +10,7 @@ var Circle = function () {
 
         this.$ele = $ele;
 
-        this.DEFAULTS = {
-            inner: 80
-        };
+        this.DEFAULTS = {};
 
         this.opts = $.extend({}, this.DEFAULTS, options);
 
@@ -20,7 +18,6 @@ var Circle = function () {
         this.skews = [];
         this.rotate1 = [];
         this.rotate2 = [];
-        this.inner = this.opts.inner;
 
         this.colors = ['#f36f6f', '#20d2af', '#a2c449', '#75a6d1', '#036f6f', '#80d2af', '#92c449', '#15a6d1', '#03654f', '#08d2af', '#92c449', '#19a8d1'];
 
@@ -31,23 +28,13 @@ var Circle = function () {
         key: 'init',
         value: function init() {
 
-            // TODO sim
+            // TODO sim  重要的事说三遍
 
             this.initPiesInfo(this.opts.pies);
             this.initPiesInfo(this.opts.pies);
             this.initPiesInfo(this.opts.pies);
 
             this.drawPies(this.piesInfo);
-        }
-    }, {
-        key: 'clearInner',
-        value: function clearInner() {
-
-            var inner = this.inner;
-
-            this.$ele.find("ul li a").each(function (index, element) {
-                $(element).css("background", "radial-gradient(transparent " + inner / Math.sqrt(2) + "%," + $(element).css("background-color") + " " + inner / Math.sqrt(2) + "%)");
-            });
         }
     }, {
         key: 'initPiesInfo',
@@ -95,8 +82,6 @@ var Circle = function () {
         value: function drawPies(pies) {
             var _this = this;
 
-            this.inner = this.opts.inner;
-
             pies.map(function (pie, i) {
                 _this.degs.push(pie.percentage * 360 / 100);
 
@@ -119,16 +104,7 @@ var Circle = function () {
                 var $li = $('<li></li>').css("transform", 'rotate(' + _this.rotate2[i] + 'deg) skew(' + _this.skews[i] + 'deg)').append($a);
 
                 _this.$ele.find('ul').append($li);
-
-                // $('<i>123</i>').css({
-                //     top: $li.height() + 'px',
-                //     left: $li.width() + 'px',
-                //     "z-index": 9999999,
-                //     background: '#000'
-                // }).appendTo($li);
             });
-
-            // this.clearInner()
         }
     }, {
         key: 'addArrows',
