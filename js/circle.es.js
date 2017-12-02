@@ -19,7 +19,7 @@ var Circle = function () {
         this.rotate1 = [];
         this.rotate2 = [];
 
-        this.colors = ['#f36f6f', '#20d2af', '#a2c449', '#75a6d1', '#036f6f', '#80d2af', '#92c449', '#15a6d1', '#03654f', '#08d2af', '#92c449', '#19a8d1'];
+        this.colors = ['#f36f6f', '#20d2af', '#a2c449', '#75a6d1', '#036f6f', '#80d2af', '#92c449', '#15a6d1', '#03654f', '#08d2af', '#92c449', '#19a8d1', '#f36f6f', '#20d2af', '#a2c449', '#75a6d1', '#036f6f', '#80d2af', '#92c449', '#15a6d1', '#03654f', '#08d2af', '#92c449', '#19a8d1'];
 
         this.init();
     }
@@ -39,6 +39,17 @@ var Circle = function () {
     }, {
         key: 'initPiesInfo',
         value: function initPiesInfo(piesInfo) {
+
+            // for(let i = 0; i < piesInfo.length; i++) {
+            //     if(piesInfo[i].percentage > 25) {
+            //         piesInfo.splice(i, 0, {
+            //             percentage: piesInfo[i].percentage - 25,
+            //             color: piesInfo[i].color
+            //         });
+            //         piesInfo[i].percentage = 25;
+            //         break;
+            //     }
+            // }
 
             piesInfo.map(function (pie, i) {
                 if (pie.percentage > 25) {
@@ -143,6 +154,8 @@ var Circle = function () {
                     pies.splice(i, 1);
                 }
             }
+
+            console.log(pies);
         }
     }, {
         key: 'saveInfo',
