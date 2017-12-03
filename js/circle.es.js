@@ -21,6 +21,8 @@ var Circle = function () {
 
         this.colors = ['#f36f6f', '#20d2af', '#a2c449', '#75a6d1', '#036f6f', '#80d2af', '#92c449', '#15a6d1', '#03654f', '#08d2af', '#92c449', '#19a8d1', '#f36f6f', '#20d2af', '#a2c449', '#75a6d1', '#036f6f', '#80d2af', '#92c449', '#15a6d1', '#03654f', '#08d2af', '#92c449', '#19a8d1'];
 
+        this.collectedPies = [];
+
         this.init();
     }
 
@@ -40,28 +42,31 @@ var Circle = function () {
         key: 'initPiesInfo',
         value: function initPiesInfo(piesInfo) {
 
-            // for(let i = 0; i < piesInfo.length; i++) {
-            //     if(piesInfo[i].percentage > 25) {
-            //         piesInfo.splice(i, 0, {
-            //             percentage: piesInfo[i].percentage - 25,
-            //             color: piesInfo[i].color
-            //         });
-            //         piesInfo[i].percentage = 25;
-            //         break;
-            //     }
-            // }
-
-            piesInfo.map(function (pie, i) {
-                if (pie.percentage > 25) {
-                    piesInfo.splice(i, 0, {
-                        percentage: pie.percentage - 25,
-                        color: pie.color
+            for (var i = 0; i < piesInfo.length; i++) {
+                if (piesInfo[i].percentage > 25) {
+                    piesInfo.splice(i + 1, 0, {
+                        percentage: piesInfo[i].percentage - 25,
+                        color: piesInfo[i].color
                     });
-                    pie.percentage = 25;
+                    piesInfo[i].percentage = 25;
+                    break;
                 }
-            });
+            }
 
-            this.piesInfo = this.opts.pies;
+            // piesInfo.map((pie, i) => {
+            //
+            //
+            //     if(pie.percentage > 25) {
+            //         piesInfo.splice(i + 1 , 0, {
+            //             percentage: pie.percentage - 25,
+            //             color: pie.color
+            //         });
+            //         pie.percentage = 25;
+            //     }
+            // });
+
+
+            this.piesInfo = piesInfo;
         }
     }, {
         key: 'updatePercentage',
@@ -128,8 +133,6 @@ var Circle = function () {
 
             var piesInfo = [];
 
-            console.log(100 / num);
-
             for (var i = 0; i < num; i++) {
                 piesInfo.push({ color: this.colors[i], percentage: 100 / num });
             }
@@ -147,15 +150,28 @@ var Circle = function () {
     }, {
         key: 'collectPies',
         value: function collectPies() {
+            var _this2 = this;
+
+            this.collectedPies = [];
+
             var pies = Object.assign({}, this.piesInfo);
-            for (var i = 0; i < pies.length - 1; i++) {
-                if (pies[i].color === pies[i + 1].color) {
-                    pies[i + 1].percentage += pies[i].percentage;
-                    pies.splice(i, 1);
+
+            Object.keys(pies).map(function (key, i) {
+                _this2.collectedPies.push(pies[key]);
+            });
+
+            console.log(this.collectedPies);
+
+            for (var i = 0; i < this.collectedPies.length - 1; i++) {
+
+                if (this.collectedPies[i].color === this.collectedPies[i + 1].color) {
+
+                    this.collectedPies[i].percentage += this.collectedPies[i + 1].percentage;
+                    this.collectedPies.splice(i + 1, 1);
                 }
             }
 
-            console.log(pies);
+            console.log('after', this.collectedPies);
         }
     }, {
         key: 'saveInfo',

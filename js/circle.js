@@ -23,6 +23,8 @@ class Circle {
             '#92c449', '#15a6d1', '#03654f', '#08d2af', '#92c449', '#19a8d1'
         ];
 
+        this.collectedPies = [];
+
 
         this.init();
     }
@@ -42,30 +44,34 @@ class Circle {
 
 
 
+
     initPiesInfo(piesInfo) {
 
-        // for(let i = 0; i < piesInfo.length; i++) {
-        //     if(piesInfo[i].percentage > 25) {
-        //         piesInfo.splice(i, 0, {
-        //             percentage: piesInfo[i].percentage - 25,
-        //             color: piesInfo[i].color
-        //         });
-        //         piesInfo[i].percentage = 25;
-        //         break;
-        //     }
-        // }
-
-        piesInfo.map((pie, i) => {
-            if(pie.percentage > 25) {
-                piesInfo.splice(i, 0, {
-                    percentage: pie.percentage - 25,
-                    color: pie.color
+        for(let i = 0; i < piesInfo.length; i++) {
+            if(piesInfo[i].percentage > 25) {
+                piesInfo.splice(i + 1 , 0, {
+                    percentage: piesInfo[i].percentage - 25,
+                    color: piesInfo[i].color
                 });
-                pie.percentage = 25;
+                piesInfo[i].percentage = 25;
+                break;
             }
-        });
+        }
 
-        this.piesInfo = this.opts.pies;
+        // piesInfo.map((pie, i) => {
+        //
+        //
+        //     if(pie.percentage > 25) {
+        //         piesInfo.splice(i + 1 , 0, {
+        //             percentage: pie.percentage - 25,
+        //             color: pie.color
+        //         });
+        //         pie.percentage = 25;
+        //     }
+        // });
+
+
+        this.piesInfo = piesInfo;
     }
 
 
@@ -134,7 +140,7 @@ class Circle {
 
         let piesInfo = [];
 
-        console.log(100 / num);
+
 
 
         for(let i = 0; i < num; i++) {
@@ -153,15 +159,28 @@ class Circle {
     }
 
     collectPies() {
+
+        this.collectedPies = [];
+
         let pies = Object.assign({}, this.piesInfo);
-        for(let i = 0; i < pies.length - 1; i++) {
-            if(pies[i].color === pies[i+1].color) {
-                pies[i+1].percentage += pies[i].percentage;
-                pies.splice(i, 1);
+
+        Object.keys(pies).map((key, i) => {
+            this.collectedPies.push(pies[key]);
+        });
+
+        console.log(this.collectedPies)
+
+
+        for(let i = 0; i < this.collectedPies.length - 1; i++) {
+
+            if(this.collectedPies[i].color === this.collectedPies[i+1].color) {
+
+                this.collectedPies[i].percentage += this.collectedPies[i+1].percentage;
+                this.collectedPies.splice(i + 1, 1);
             }
         }
 
-        console.log(pies);
+        console.log('after',this.collectedPies);
     }
 
    saveInfo() {
