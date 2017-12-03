@@ -16,7 +16,7 @@
 
   .arrows > .arrow {
     position: absolute;
-    transform:  rotate(0deg);
+    //transform:  rotate(-90deg);
     transform-origin: 15px calc(30px - 4px  + 5em);
     margin-left: calc(5em - 15px);
     margin-top: calc(-30px + 4px);

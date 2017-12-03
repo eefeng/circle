@@ -40,6 +40,8 @@ class Circle {
 
         this.drawPies(this.piesInfo);
 
+        this.drawArrows();
+
     }
 
 
@@ -57,19 +59,6 @@ class Circle {
                 break;
             }
         }
-
-        // piesInfo.map((pie, i) => {
-        //
-        //
-        //     if(pie.percentage > 25) {
-        //         piesInfo.splice(i + 1 , 0, {
-        //             percentage: pie.percentage - 25,
-        //             color: pie.color
-        //         });
-        //         pie.percentage = 25;
-        //     }
-        // });
-
 
         this.piesInfo = piesInfo;
     }
@@ -96,6 +85,11 @@ class Circle {
         this.skews = [];
         this.rotate1 = [];
         this.rotate2 = [];
+        this.collectedPies =[];
+    }
+
+    clearArrows() {
+        this.$ele.find('.arrows').empty();
     }
 
     drawPies(pies) {
@@ -129,14 +123,26 @@ class Circle {
 
     }
 
+    drawArrows() {
+       this.collectPies();
 
-    addArrows() {
+        let ds = 0;
 
+        this.collectedPies.map((pie, i) => {
+
+            pie.degs = ds;
+            ds = ds + pie.percentage * 360 / 100;
+
+            $(`<img src="./arrow-down.svg" alt="" class="arrow" width="30" style="transform: rotate(${ds-90}deg)">`)
+                .appendTo(this.$ele.find('.arrows'));
+        });
     }
+
 
     divideInto(num) {
 
         this.clearPies();
+        this.clearArrows();
 
         let piesInfo = [];
 
@@ -154,8 +160,11 @@ class Circle {
         this.initPiesInfo(piesInfo);
 
         this.drawPies(piesInfo);
+        this.drawArrows();
 
         this.piesInfo = piesInfo;
+
+        console.log('divided')
     }
 
     collectPies() {
@@ -168,9 +177,6 @@ class Circle {
             this.collectedPies.push(pies[key]);
         });
 
-        console.log(this.collectedPies)
-
-
         for(let i = 0; i < this.collectedPies.length - 1; i++) {
 
             if(this.collectedPies[i].color === this.collectedPies[i+1].color) {
@@ -180,12 +186,10 @@ class Circle {
             }
         }
 
-        console.log('after',this.collectedPies);
     }
 
    saveInfo() {
-        this.collectPies();
-        console.log(this.piesInfo);
-
+       this.collectPies();
+       console.log(this.collectedPies)
    }
 }

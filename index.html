@@ -21,11 +21,8 @@
 <div class="circle-container">
     <div class="circle circular" id="circle">
         <div class="center"></div>
-        <div class="arrows">
-            <img src="./arrow-down.svg" alt="" class="arrow" width="30">
-        </div>
-        <ul>
-        </ul>
+        <div class="arrows"></div>
+        <ul></ul>
     </div>
 </div>
 
@@ -73,9 +70,8 @@
     });
 
     $('#divide').click(function () {
-        circle.divideInto($('#divideNumber').val());
+        circle.divideInto(Number($('#divideNumber').val()));
     });
-
 
 
 </script>

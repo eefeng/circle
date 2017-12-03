@@ -37,6 +37,8 @@ var Circle = function () {
             this.initPiesInfo(this.opts.pies);
 
             this.drawPies(this.piesInfo);
+
+            this.drawArrows();
         }
     }, {
         key: 'initPiesInfo',
@@ -52,19 +54,6 @@ var Circle = function () {
                     break;
                 }
             }
-
-            // piesInfo.map((pie, i) => {
-            //
-            //
-            //     if(pie.percentage > 25) {
-            //         piesInfo.splice(i + 1 , 0, {
-            //             percentage: pie.percentage - 25,
-            //             color: pie.color
-            //         });
-            //         pie.percentage = 25;
-            //     }
-            // });
-
 
             this.piesInfo = piesInfo;
         }
@@ -92,6 +81,12 @@ var Circle = function () {
             this.skews = [];
             this.rotate1 = [];
             this.rotate2 = [];
+            this.collectedPies = [];
+        }
+    }, {
+        key: 'clearArrows',
+        value: function clearArrows() {
+            this.$ele.find('.arrows').empty();
         }
     }, {
         key: 'drawPies',
@@ -123,13 +118,28 @@ var Circle = function () {
             });
         }
     }, {
-        key: 'addArrows',
-        value: function addArrows() {}
+        key: 'drawArrows',
+        value: function drawArrows() {
+            var _this2 = this;
+
+            this.collectPies();
+
+            var ds = 0;
+
+            this.collectedPies.map(function (pie, i) {
+
+                pie.degs = ds;
+                ds = ds + pie.percentage * 360 / 100;
+
+                $('<img src="./arrow-down.svg" alt="" class="arrow" width="30" style="transform: rotate(' + (ds - 90) + 'deg)">').appendTo(_this2.$ele.find('.arrows'));
+            });
+        }
     }, {
         key: 'divideInto',
         value: function divideInto(num) {
 
             this.clearPies();
+            this.clearArrows();
 
             var piesInfo = [];
 
@@ -144,23 +154,24 @@ var Circle = function () {
             this.initPiesInfo(piesInfo);
 
             this.drawPies(piesInfo);
+            this.drawArrows();
 
             this.piesInfo = piesInfo;
+
+            console.log('divided');
         }
     }, {
         key: 'collectPies',
         value: function collectPies() {
-            var _this2 = this;
+            var _this3 = this;
 
             this.collectedPies = [];
 
             var pies = Object.assign({}, this.piesInfo);
 
             Object.keys(pies).map(function (key, i) {
-                _this2.collectedPies.push(pies[key]);
+                _this3.collectedPies.push(pies[key]);
             });
-
-            console.log(this.collectedPies);
 
             for (var i = 0; i < this.collectedPies.length - 1; i++) {
 
@@ -170,14 +181,12 @@ var Circle = function () {
                     this.collectedPies.splice(i + 1, 1);
                 }
             }
-
-            console.log('after', this.collectedPies);
         }
     }, {
         key: 'saveInfo',
         value: function saveInfo() {
             this.collectPies();
-            console.log(this.piesInfo);
+            console.log(this.collectedPies);
         }
     }]);
 
