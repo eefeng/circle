@@ -23,10 +23,26 @@ var Circle = function () {
 
         this.collectedPies = [];
 
-        this.init();
+        if (this.checkPercentage()) {
+            this.init();
+        }
     }
 
     _createClass(Circle, [{
+        key: 'checkPercentage',
+        value: function checkPercentage() {
+            var total = 0;
+            this.opts.pies.map(function (pie, i) {
+                total += pie.percentage;
+            });
+            if (total <= 100.1 && total >= 99.9) {
+                return true;
+            } else {
+                console.error('total percentage exceed, please check \'pies\'');
+                return false;
+            }
+        }
+    }, {
         key: 'init',
         value: function init() {
 
@@ -122,6 +138,7 @@ var Circle = function () {
         value: function drawArrows() {
             var _this2 = this;
 
+            console.log(this.opts);
             this.collectPies();
 
             var ds = 0;
@@ -131,7 +148,7 @@ var Circle = function () {
                 pie.degs = ds;
                 ds = ds + pie.percentage * 360 / 100;
 
-                $('<img src="./arrow-down.svg" alt="" class="arrow" width="30" style="transform: rotate(' + (ds - 90) + 'deg)">').appendTo(_this2.$ele.find('.arrows'));
+                $('<img src=' + _this2.opts.arrowUrl + ' alt="" class="arrow" width="15" style="transform: rotate(' + (ds - 90) + 'deg)">').appendTo(_this2.$ele.find('.arrows'));
             });
         }
     }, {
@@ -186,7 +203,7 @@ var Circle = function () {
         key: 'saveInfo',
         value: function saveInfo() {
             this.collectPies();
-            console.log(this.collectedPies);
+            console.log(this.collectedPies, this.piesInfo);
         }
     }]);
 

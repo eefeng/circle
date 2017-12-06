@@ -26,7 +26,27 @@ class Circle {
         this.collectedPies = [];
 
 
-        this.init();
+        if(this.checkPercentage()) {
+            this.init();
+        }
+
+
+    }
+
+    checkPercentage() {
+        let total = 0;
+        this.opts.pies.map((pie, i) => {
+            total += pie.percentage;
+        });
+        if(total <= 100.1 && total >= 99.9) {
+            return true;
+        }
+        else {
+            console.error(`total percentage exceed, please check 'pies'`);
+            return false;
+        }
+
+
     }
 
     init() {
@@ -124,6 +144,8 @@ class Circle {
     }
 
     drawArrows() {
+
+        console.log(this.opts)
        this.collectPies();
 
         let ds = 0;
@@ -133,7 +155,7 @@ class Circle {
             pie.degs = ds;
             ds = ds + pie.percentage * 360 / 100;
 
-            $(`<img src="./arrow-down.svg" alt="" class="arrow" width="30" style="transform: rotate(${ds-90}deg)">`)
+            $(`<img src=${this.opts.arrowUrl} alt="" class="arrow" width="15" style="transform: rotate(${ds-90}deg)">`)
                 .appendTo(this.$ele.find('.arrows'));
         });
     }
@@ -169,6 +191,7 @@ class Circle {
 
     collectPies() {
 
+
         this.collectedPies = [];
 
         let pies = Object.assign({}, this.piesInfo);
@@ -190,6 +213,6 @@ class Circle {
 
    saveInfo() {
        this.collectPies();
-       console.log(this.collectedPies)
+       console.log(this.collectedPies, this.piesInfo)
    }
 }
