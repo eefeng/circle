@@ -155,7 +155,7 @@ class Circle {
             pie.degs = ds;
             ds = ds + pie.percentage * 360 / 100;
 
-            $(`<img src=${this.opts.arrowUrl} alt="" class="arrow" width="15" style="transform: rotate(${ds-90}deg)">`)
+            $(`<img src=${this.opts.arrowUrl} alt="" class="arrow" width="16" style="transform: rotate(${ds-90}deg)">`)
                 .appendTo(this.$ele.find('.arrows'));
         });
     }

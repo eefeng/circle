@@ -148,7 +148,7 @@ var Circle = function () {
                 pie.degs = ds;
                 ds = ds + pie.percentage * 360 / 100;
 
-                $('<img src=' + _this2.opts.arrowUrl + ' alt="" class="arrow" width="15" style="transform: rotate(' + (ds - 90) + 'deg)">').appendTo(_this2.$ele.find('.arrows'));
+                $('<img src=' + _this2.opts.arrowUrl + ' alt="" class="arrow" width="16" style="transform: rotate(' + (ds - 90) + 'deg)">').appendTo(_this2.$ele.find('.arrows'));
             });
         }
     }, {

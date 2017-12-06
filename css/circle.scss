@@ -16,10 +16,10 @@
 
   .arrows > .arrow {
     position: absolute;
-    //transform:  rotate(-90deg);
-    transform-origin: 15px calc(30px - 4px  + 5em);
-    margin-left: calc(5em - 15px);
-    margin-top: calc(-30px + 4px);
+    //transform:  rotate(0deg)!important;
+    transform-origin: 8px calc(20px  + 5em);
+    margin-left: calc(5em - 8px);
+    margin-top: calc(-20px);
     z-index: 999;
   }
 
